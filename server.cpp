@@ -1,3 +1,14 @@
+// IRC server entry point.
+// Single-threaded, event-driven architecture using poll() for I/O multiplexing.
+// All sockets are set to non-blocking mode; no threads or forking are used.
+//
+// Event loop contract:
+//   1. poll() blocks until at least one fd is ready.
+//   2. If the server socket fires: accept a new client connection.
+//   3. If a client socket fires: recv() into per-client input buffer,
+//      then parse complete lines and dispatch to command handlers.
+//   4. After all events: flush each client's outbox via send().
+
 #include <poll.h>
 #include <fcntl.h>
 #include <sys/socket.h>
