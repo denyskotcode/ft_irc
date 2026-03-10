@@ -42,6 +42,11 @@ std::string Handlers::serverNumeric(const ServerState* state,
     return line;
 }
 
+// RFC 2812 §2.3.1 nickname grammar (simplified):
+//   nickname = ( letter / special ) *( letter / digit / special / "-" )
+//   special  = "[" / "]" / "\" / "`" / "_" / "^" / "{" / "|" / "}"
+// We support a common subset: [a-zA-Z_\[\]] for the first char,
+// [a-zA-Z0-9_\-\[\]] for subsequent characters.
 bool Handlers::isValidNickname(const std::string& nickname)
 {
     if (nickname.empty())
