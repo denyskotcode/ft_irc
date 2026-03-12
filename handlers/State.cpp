@@ -140,7 +140,9 @@ void State::add_client_to_channel(int clientFd, const std::string& channelName)
 
     channel->members.insert(clientFd);
     client->channels.insert(channelName);
+    // Consume any pending invite (allows bypassing +i on next join attempt too).
     channel->invited.erase(clientFd);
+    // First member automatically becomes channel operator.
     if (channel->members.size() == 1)
         channel->operators.insert(clientFd);
 }
