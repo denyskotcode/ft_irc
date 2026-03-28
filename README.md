@@ -376,3 +376,10 @@ MODE #test +kl secret 5     # password + limit
 - [`poll(2)` man page](https://man7.org/linux/man-pages/man2/poll.2.html)
 - [Modern IRC numerics reference](https://modern.ircdocs.horse/)
 - [C++ reference (C++98)](https://en.cppreference.com/)
+
+
+---
+
+## License
+
+MIT © [denyskotcode](https://github.com/denyskotcode) — see [LICENSE](LICENSE) for details.
